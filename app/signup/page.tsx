@@ -3,7 +3,6 @@
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { API_URL } from '@/lib/api';
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -58,7 +57,7 @@ export default function SignupPage() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/auth/register`, {
+      const response = await fetch('http://localhost:8000/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -93,23 +92,23 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-600 py-12 px-4">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-2xl shadow-2xl">
+    <div className="min-h-screen flex items-center justify-center bg-blue-600 py-12 px-4">
+      <div className="w-full max-w-md p-10 space-y-8 bg-white rounded-2xl shadow-2xl border-4 border-blue-700">
         {/* Logo/Title */}
         <div className="text-center">
-          <div className="mx-auto w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center mb-4">
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="mx-auto w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mb-6 shadow-lg">
+            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
             </svg>
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">Create Account</h2>
-          <p className="mt-2 text-sm text-gray-600">Join us to start detecting deepfakes</p>
+          <h2 className="text-4xl font-bold text-gray-900">Create Account</h2>
+          <p className="mt-3 text-base text-gray-600 font-medium">Join us to start detecting deepfakes</p>
         </div>
 
         {/* Error Message */}
         {error && (
-          <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
-            <p className="text-sm text-red-700">{error}</p>
+          <div className="bg-red-50 border-2 border-red-400 p-4 rounded-lg">
+            <p className="text-sm text-red-700 font-semibold">{error}</p>
           </div>
         )}
 
@@ -118,7 +117,7 @@ export default function SignupPage() {
           <div className="space-y-4">
             {/* Username */}
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="username" className="block text-sm font-bold text-gray-800 mb-2">
                 Username *
               </label>
               <input
@@ -128,7 +127,7 @@ export default function SignupPage() {
                 required
                 value={formData.username}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition duration-200 text-gray-900"
+                className="w-full px-4 py-3 border-2 border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 text-gray-900 font-medium"
                 placeholder="Choose a username"
                 disabled={loading}
               />
@@ -136,7 +135,7 @@ export default function SignupPage() {
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="email" className="block text-sm font-bold text-gray-800 mb-2">
                 Email Address *
               </label>
               <input
@@ -146,7 +145,7 @@ export default function SignupPage() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition duration-200 text-gray-900"
+                className="w-full px-4 py-3 border-2 border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 text-gray-900 font-medium"
                 placeholder="your.email@example.com"
                 disabled={loading}
               />
@@ -154,7 +153,7 @@ export default function SignupPage() {
 
             {/* Full Name */}
             <div>
-              <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="fullName" className="block text-sm font-bold text-gray-800 mb-2">
                 Full Name (Optional)
               </label>
               <input
@@ -163,7 +162,7 @@ export default function SignupPage() {
                 type="text"
                 value={formData.fullName}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition duration-200 text-gray-900"
+                className="w-full px-4 py-3 border-2 border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 text-gray-900 font-medium"
                 placeholder="John Doe"
                 disabled={loading}
               />
@@ -171,7 +170,7 @@ export default function SignupPage() {
 
             {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="password" className="block text-sm font-bold text-gray-800 mb-2">
                 Password *
               </label>
               <input
@@ -181,7 +180,7 @@ export default function SignupPage() {
                 required
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition duration-200 text-gray-900"
+                className="w-full px-4 py-3 border-2 border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 text-gray-900 font-medium"
                 placeholder="Min 8 chars, 1 upper, 1 lower, 1 digit"
                 disabled={loading}
               />
@@ -189,7 +188,7 @@ export default function SignupPage() {
 
             {/* Confirm Password */}
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="confirmPassword" className="block text-sm font-bold text-gray-800 mb-2">
                 Confirm Password *
               </label>
               <input
@@ -199,7 +198,7 @@ export default function SignupPage() {
                 required
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition duration-200 text-gray-900"
+                className="w-full px-4 py-3 border-2 border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 text-gray-900 font-medium"
                 placeholder="Re-enter your password"
                 disabled={loading}
               />
@@ -207,24 +206,24 @@ export default function SignupPage() {
           </div>
 
           {/* Password Requirements */}
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <p className="text-xs font-semibold text-gray-700 mb-2">Password Requirements:</p>
-            <ul className="text-xs text-gray-600 space-y-1">
+          <div className="bg-blue-50 border-2 border-blue-200 p-4 rounded-lg">
+            <p className="text-sm font-bold text-gray-800 mb-2">Password Requirements:</p>
+            <ul className="text-sm text-gray-700 space-y-1">
               <li className="flex items-center">
-                <span className={formData.password.length >= 8 ? 'text-green-600' : 'text-gray-400'}>✓</span>
-                <span className="ml-2">At least 8 characters</span>
+                <span className={formData.password.length >= 8 ? 'text-green-600 font-bold' : 'text-gray-400'}>✓</span>
+                <span className="ml-2 font-medium">At least 8 characters</span>
               </li>
               <li className="flex items-center">
-                <span className={/[A-Z]/.test(formData.password) ? 'text-green-600' : 'text-gray-400'}>✓</span>
-                <span className="ml-2">One uppercase letter</span>
+                <span className={/[A-Z]/.test(formData.password) ? 'text-green-600 font-bold' : 'text-gray-400'}>✓</span>
+                <span className="ml-2 font-medium">One uppercase letter</span>
               </li>
               <li className="flex items-center">
-                <span className={/[a-z]/.test(formData.password) ? 'text-green-600' : 'text-gray-400'}>✓</span>
-                <span className="ml-2">One lowercase letter</span>
+                <span className={/[a-z]/.test(formData.password) ? 'text-green-600 font-bold' : 'text-gray-400'}>✓</span>
+                <span className="ml-2 font-medium">One lowercase letter</span>
               </li>
               <li className="flex items-center">
-                <span className={/[0-9]/.test(formData.password) ? 'text-green-600' : 'text-gray-400'}>✓</span>
-                <span className="ml-2">One digit</span>
+                <span className={/[0-9]/.test(formData.password) ? 'text-green-600 font-bold' : 'text-gray-400'}>✓</span>
+                <span className="ml-2 font-medium">One digit</span>
               </li>
             </ul>
           </div>
@@ -233,7 +232,7 @@ export default function SignupPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 px-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold rounded-lg shadow-lg transform transition duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            className="w-full py-4 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-base rounded-lg shadow-lg transform transition duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           >
             {loading ? (
               <span className="flex items-center justify-center">
@@ -250,9 +249,9 @@ export default function SignupPage() {
 
           {/* Login Link */}
           <div className="text-center">
-            <p className="text-sm text-gray-600">
+            <p className="text-base text-gray-700 font-medium">
               Already have an account?{' '}
-              <Link href="/login" className="font-medium text-emerald-600 hover:text-emerald-500 transition duration-200">
+              <Link href="/login" className="font-bold text-blue-600 hover:text-blue-700 transition duration-200">
                 Sign in here
               </Link>
             </p>

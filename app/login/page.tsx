@@ -3,7 +3,6 @@
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { API_URL } from '@/lib/api';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -18,7 +17,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/auth/login`, {
+      const response = await fetch('http://localhost:8000/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,23 +47,23 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-2xl shadow-2xl">
+    <div className="min-h-screen flex items-center justify-center bg-blue-600">
+      <div className="w-full max-w-md p-10 space-y-8 bg-white rounded-2xl shadow-2xl border-4 border-blue-700">
         {/* Logo/Title */}
         <div className="text-center">
-          <div className="mx-auto w-16 h-16 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full flex items-center justify-center mb-4">
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="mx-auto w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mb-6 shadow-lg">
+            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
             </svg>
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">Welcome Back</h2>
-          <p className="mt-2 text-sm text-gray-600">Sign in to detect audio deepfakes</p>
+          <h2 className="text-4xl font-bold text-gray-900">Welcome Back</h2>
+          <p className="mt-3 text-base text-gray-600 font-medium">Sign in to detect audio deepfakes</p>
         </div>
 
         {/* Error Message */}
         {error && (
-          <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
-            <p className="text-sm text-red-700">{error}</p>
+          <div className="bg-red-50 border-2 border-red-400 p-4 rounded-lg">
+            <p className="text-sm text-red-700 font-semibold">{error}</p>
           </div>
         )}
 
@@ -73,7 +72,7 @@ export default function LoginPage() {
           <div className="space-y-4">
             {/* Username */}
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="username" className="block text-sm font-bold text-gray-800 mb-2">
                 Username
               </label>
               <input
@@ -82,7 +81,7 @@ export default function LoginPage() {
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200 text-gray-900"
+                className="w-full px-4 py-3 border-2 border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 text-gray-900 font-medium"
                 placeholder="Enter your username"
                 disabled={loading}
               />
@@ -90,7 +89,7 @@ export default function LoginPage() {
 
             {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="password" className="block text-sm font-bold text-gray-800 mb-2">
                 Password
               </label>
               <input
@@ -99,7 +98,7 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200 text-gray-900"
+                className="w-full px-4 py-3 border-2 border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 text-gray-900 font-medium"
                 placeholder="Enter your password"
                 disabled={loading}
               />
@@ -110,7 +109,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 px-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold rounded-lg shadow-lg transform transition duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            className="w-full py-4 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-base rounded-lg shadow-lg transform transition duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           >
             {loading ? (
               <span className="flex items-center justify-center">
@@ -127,9 +126,9 @@ export default function LoginPage() {
 
           {/* Sign Up Link */}
           <div className="text-center">
-            <p className="text-sm text-gray-600">
+            <p className="text-base text-gray-700 font-medium">
               Don't have an account?{' '}
-              <Link href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500 transition duration-200">
+              <Link href="/signup" className="font-bold text-blue-600 hover:text-blue-700 transition duration-200">
                 Sign up here
               </Link>
             </p>
