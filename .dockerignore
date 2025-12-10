@@ -1,0 +1,18 @@
+# Docker files
+.dockerignore
+Dockerfile
+
+# Development
+node_modules
+.next
+.git
+
+# Environment
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Misc
+*.log
+npm-debug.log*
