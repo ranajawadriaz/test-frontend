@@ -1,6 +1,6 @@
 // API Configuration
 // Automatically uses environment variable or falls back to localhost
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://ranajawadapi.duckdns.org';
 
 // Helper function to make authenticated API calls
 export async function apiRequest(

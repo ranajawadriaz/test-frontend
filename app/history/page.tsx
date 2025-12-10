@@ -63,7 +63,7 @@ export default function HistoryPage() {
 
   const fetchHistory = async (token: string) => {
     try {
-      const response = await fetch('http://localhost:8000/history', {
+      const response = await fetch('https://ranajawadapi.duckdns.org/history', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -88,7 +88,7 @@ export default function HistoryPage() {
 
   const fetchStats = async (token: string) => {
     try {
-      const response = await fetch('http://localhost:8000/stats', {
+      const response = await fetch('https://ranajawadapi.duckdns.org/stats', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
